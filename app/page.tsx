@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-// MASSIVE 18-Business Database
+// MEGA 36-Business Database!
 const businesses = [
+  // Original 18
   { id: 1, name: "Maputo Fresh Groceries", category: "Retail", location: "Maputo", description: "Fresh, organic local produce delivered directly from Mozambican farmers to your door.", image: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=600&auto=format&fit=crop" },
   { id: 2, name: "Matola Tech Repair", category: "Services", location: "Matola", description: "Quick, affordable, and reliable phone and laptop repairs by certified technicians.", image: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?q=80&w=600&auto=format&fit=crop" },
   { id: 3, name: "Beira Bite Cafe", category: "Food & Drink", location: "Beira", description: "The best artisanal coffee, fresh pastries, and a relaxing workspace in the city.", image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=600&auto=format&fit=crop" },
@@ -22,12 +23,31 @@ const businesses = [
   { id: 15, name: "Maxixe Transport Hub", category: "Services", location: "Maxixe", description: "Reliable intercity bus bookings and private transport rentals across the province.", image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=600&auto=format&fit=crop" },
   { id: 16, name: "Lichinga Pine Furniture", category: "Retail", location: "Lichinga", description: "Beautiful, durable, handcrafted furniture made from locally sourced Niassa pine.", image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?q=80&w=600&auto=format&fit=crop" },
   { id: 17, name: "Maputo Fitness Oasis", category: "Health", location: "Maputo", description: "State-of-the-art gym equipment, personal training, and group wellness classes.", image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop" },
-  { id: 18, name: "Gorongosa Eco-Lodge", category: "Services", location: "Gorongosa", description: "Sustainable safari accommodation offering guided tours of the national park.", image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=600&auto=format&fit=crop" }
+  { id: 18, name: "Gorongosa Eco-Lodge", category: "Services", location: "Gorongosa", description: "Sustainable safari accommodation offering guided tours of the national park.", image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=600&auto=format&fit=crop" },
+  
+  // 18 BRAND NEW BUSINESSES!
+  { id: 19, name: "Matola Artisan Bakery", category: "Food & Drink", location: "Matola", description: "Warm, freshly baked bread, cakes, and traditional Mozambican savory snacks.", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop" },
+  { id: 20, name: "Beira Enterprise IT", category: "Tech", location: "Beira", description: "Network installations, cybersecurity, and cloud solutions for growing businesses.", image: "https://images.unsplash.com/photo-1519389953810-1950815c7e43?q=80&w=600&auto=format&fit=crop" },
+  { id: 21, name: "Maputo Modern Boutique", category: "Fashion", location: "Maputo", description: "Contemporary urban wear blending modern street style with African prints.", image: "https://images.unsplash.com/photo-1441983114761-f1a1d41c882a?q=80&w=600&auto=format&fit=crop" },
+  { id: 22, name: "Vilankulo Craft Market", category: "Retail", location: "Vilankulo", description: "Handmade wooden sculptures, woven baskets, and beautiful tourist souvenirs.", image: "https://images.unsplash.com/photo-1531053270064-99837137f8f4?q=80&w=600&auto=format&fit=crop" },
+  { id: 23, name: "Tete Smile Dental", category: "Health", location: "Tete", description: "Professional dental care, cleanings, and orthodontics for the whole family.", image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=600&auto=format&fit=crop" },
+  { id: 24, name: "Maputo Cleaning Pros", category: "Services", location: "Maputo", description: "Deep cleaning, office maintenance, and residential housekeeping services.", image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=600&auto=format&fit=crop" },
+  { id: 25, name: "Pemba Beach Bar", category: "Food & Drink", location: "Pemba", description: "Sunset cocktails, fresh juices, and grilled seafood right on the white sand beach.", image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=600&auto=format&fit=crop" },
+  { id: 26, name: "Nampula Cyber Cafe", category: "Tech", location: "Nampula", description: "High-speed internet access, printing services, and computer rentals.", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop" },
+  { id: 27, name: "Xai-Xai Tailors", category: "Fashion", location: "Xai-Xai", description: "Expert alterations, custom suits, and bespoke wedding attire.", image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=600&auto=format&fit=crop" },
+  { id: 28, name: "Chimoio Builders Hardware", category: "Retail", location: "Chimoio", description: "Everything you need for DIY projects, home renovations, and construction.", image: "https://images.unsplash.com/photo-1541888046-281b3152069b?q=80&w=600&auto=format&fit=crop" },
+  { id: 29, name: "Tofo Scuba Academy", category: "Services", location: "Tofo", description: "PADI certified scuba diving courses and thrilling whale shark safaris.", image: "https://images.unsplash.com/photo-1682685517565-d6d03f0b2401?q=80&w=600&auto=format&fit=crop" },
+  { id: 30, name: "Quelimane Books & Supplies", category: "Retail", location: "Quelimane", description: "School textbooks, office stationery, and literature by African authors.", image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42c?q=80&w=600&auto=format&fit=crop" },
+  { id: 31, name: "Gurué Mountain Yoga", category: "Health", location: "Gurué", description: "Peaceful yoga retreats, meditation classes, and holistic wellness workshops.", image: "https://images.unsplash.com/photo-1544367567045-46e53966c6c0?q=80&w=600&auto=format&fit=crop" },
+  { id: 32, name: "Maputo Sky Drones", category: "Tech", location: "Maputo", description: "Professional aerial photography, videography, and land surveying services.", image: "https://images.unsplash.com/photo-1473968512647-3e447244097e?q=80&w=600&auto=format&fit=crop" },
+  { id: 33, name: "Inhambane Coconut Stand", category: "Food & Drink", location: "Inhambane", description: "The freshest, sweetest coconut water hacked open right in front of you.", image: "https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=600&auto=format&fit=crop" },
+  { id: 34, name: "Nacala Vision Center", category: "Health", location: "Nacala", description: "Eye exams, stylish prescription glasses, and UV protection sunglasses.", image: "https://images.unsplash.com/photo-1512438283995-1f99c8f654b4?q=80&w=600&auto=format&fit=crop" },
+  { id: 35, name: "Beira Leather Goods", category: "Fashion", location: "Beira", description: "Hand-stitched leather wallets, belts, and luxury travel bags.", image: "https://images.unsplash.com/photo-1470309864661-68328b2cd0a5?q=80&w=600&auto=format&fit=crop" },
+  { id: 36, name: "Lichinga Cold Storage", category: "Services", location: "Lichinga", description: "Commercial refrigeration and frozen storage solutions for agricultural businesses.", image: "https://images.unsplash.com/photo-1585244342526-928e1262dcfd?q=80&w=600&auto=format&fit=crop" }
 ];
 
 const categories = ['All', 'Retail', 'Services', 'Food & Drink', 'Fashion', 'Tech', 'Health'];
 
-// Fake Testimonials
 const testimonials = [
   { id: 1, name: "Ana Silva", role: "Local Shopper", text: "MozBiz makes it so incredibly easy to find reliable services in Maputo. I use it every week!" },
   { id: 2, name: "Carlos Tembe", role: "Small Business Owner", text: "Since listing my tech repair shop here, my customer base in Matola has doubled. Amazing platform." },
@@ -81,15 +101,15 @@ export default function Home() {
         </div>
       </header>
 
-      {/* NEW: Statistics Bar */}
+      {/* UPDATED: Statistics Bar */}
       <div className="bg-orange-500 text-white py-8 shadow-inner relative z-20">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-orange-400">
           <div className="pt-4 md:pt-0">
-            <div className="text-4xl font-black mb-1">18+</div>
+            <div className="text-4xl font-black mb-1">35+</div>
             <div className="text-orange-100 font-medium uppercase tracking-widest text-sm">Verified Businesses</div>
           </div>
           <div className="pt-4 md:pt-0">
-            <div className="text-4xl font-black mb-1">12</div>
+            <div className="text-4xl font-black mb-1">15+</div>
             <div className="text-orange-100 font-medium uppercase tracking-widest text-sm">Cities Covered</div>
           </div>
           <div className="pt-4 md:pt-0">
@@ -164,7 +184,7 @@ export default function Home() {
         )}
       </section>
 
-      {/* NEW: Testimonials Section */}
+      {/* Testimonials Section */}
       <section className="bg-white py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -192,7 +212,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NEW: Newsletter CTA */}
+      {/* Newsletter CTA */}
       <section className="bg-blue-900 py-20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
