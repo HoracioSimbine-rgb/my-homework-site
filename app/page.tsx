@@ -49,14 +49,15 @@ const businesses = [
 const categories = ['All', 'Retail', 'Services', 'Food & Drink', 'Fashion', 'Tech', 'Health'];
 
 const testimonials = [
-  { id: 1, name: "Ana Silva", role: "Local Shopper", text: "MozBiz makes it so incredibly easy to find reliable services in Maputo. I use it every week!" },
-  { id: 2, name: "Carlos Tembe", role: "Small Business Owner", text: "Since listing my tech repair shop here, my customer base in Matola has doubled. Amazing platform." },
-  { id: 3, name: "Elena Rosa", role: "Tourist", text: "Found the best surf shops and cafes in Tofo using this directory. Beautifully designed and easy to use." }
+  { id: 1, name: "Ana Silva", role: "Local Shopper", text: "MozBiz makes it so incredibly easy to find reliable services in Maputo. I use it every week!", image: "https://images.unsplash.com/photo-1531123897727-8f129e1bf98c?q=80&w=200&auto=format&fit=crop" },
+  { id: 2, name: "Carlos Tembe", role: "Small Business Owner", text: "Since listing my tech repair shop here, my customer base in Matola has doubled. Amazing platform.", image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=200&auto=format&fit=crop" },
+  { id: 3, name: "Elena Rosa", role: "Tourist", text: "Found the best surf shops and cafes in Tofo using this directory. Beautifully designed and easy to use.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" }
 ];
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const filteredBusinesses = businesses.filter(biz => {
     const matchesSearch = biz.name.toLowerCase().includes(searchTerm.toLowerCase()) || biz.location.toLowerCase().includes(searchTerm.toLowerCase());
@@ -66,16 +67,37 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gray-50 text-gray-800 font-sans flex flex-col">
-      {/* Navbar */}
+      {/* Navigation */}
       <nav className="bg-white shadow-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="text-2xl font-black text-blue-800 tracking-tighter">Moz<span className="text-orange-500">Biz</span></div>
+          
+          {/* Desktop Links */}
           <div className="space-x-8 text-sm font-semibold hidden md:block">
             <Link href="/" className="text-blue-800 border-b-2 border-orange-500 pb-1">Directory</Link>
             <Link href="/about" className="text-gray-500 hover:text-blue-800 transition-colors">About Us</Link>
             <Link href="/contact" className="text-gray-500 hover:text-blue-800 transition-colors">Contact</Link>
           </div>
+
+          {/* Mobile Hamburger Button */}
+          <button 
+            className="md:hidden text-gray-600 focus:outline-none"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-4 shadow-lg absolute w-full left-0 z-50">
+            <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="block text-blue-800 font-bold">Directory</Link>
+            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-600 font-semibold">About Us</Link>
+            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-600 font-semibold">Contact</Link>
+          </div>
+        )}
       </nav>
 
       {/* Hero */}
@@ -101,21 +123,12 @@ export default function Home() {
         </div>
       </header>
 
-      {/* UPDATED: Statistics Bar */}
+      {/* Stats Bar */}
       <div className="bg-orange-500 text-white py-8 shadow-inner relative z-20">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-orange-400">
-          <div className="pt-4 md:pt-0">
-            <div className="text-4xl font-black mb-1">35+</div>
-            <div className="text-orange-100 font-medium uppercase tracking-widest text-sm">Verified Businesses</div>
-          </div>
-          <div className="pt-4 md:pt-0">
-            <div className="text-4xl font-black mb-1">15+</div>
-            <div className="text-orange-100 font-medium uppercase tracking-widest text-sm">Cities Covered</div>
-          </div>
-          <div className="pt-4 md:pt-0">
-            <div className="text-4xl font-black mb-1">10k+</div>
-            <div className="text-orange-100 font-medium uppercase tracking-widest text-sm">Monthly Users</div>
-          </div>
+          <div className="pt-4 md:pt-0"><div className="text-4xl font-black mb-1">35+</div><div className="text-orange-100 uppercase tracking-widest text-sm font-bold">Verified Businesses</div></div>
+          <div className="pt-4 md:pt-0"><div className="text-4xl font-black mb-1">15+</div><div className="text-orange-100 uppercase tracking-widest text-sm font-bold">Cities Covered</div></div>
+          <div className="pt-4 md:pt-0"><div className="text-4xl font-black mb-1">10k+</div><div className="text-orange-100 uppercase tracking-widest text-sm font-bold">Monthly Users</div></div>
         </div>
       </div>
 
@@ -128,7 +141,7 @@ export default function Home() {
               onClick={() => setActiveCategory(category)}
               className={`px-6 py-2 rounded-full text-sm font-bold transition-all shadow-sm ${
                 activeCategory === category 
-                  ? 'bg-blue-800 text-white hover:bg-blue-900' 
+                  ? 'bg-blue-800 text-white' 
                   : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
               }`}
             >
@@ -139,33 +152,27 @@ export default function Home() {
 
         <div className="flex justify-between items-center mb-8 border-b border-gray-200 pb-4">
           <h2 className="text-3xl font-bold text-gray-900">Explore Directory</h2>
-          <span className="text-sm font-bold text-orange-600 bg-orange-100 py-1 px-4 rounded-full shadow-inner">
-            {filteredBusinesses.length} Results
-          </span>
+          <span className="text-sm font-bold text-orange-600 bg-orange-100 py-1 px-4 rounded-full">{filteredBusinesses.length} Results</span>
         </div>
 
         {filteredBusinesses.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredBusinesses.map((biz) => (
-              <div key={biz.id} className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group flex flex-col border border-gray-100">
+              <div key={biz.id} className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-gray-100 flex flex-col">
                 <div className="h-48 w-full overflow-hidden relative">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={biz.image} alt={biz.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute top-4 left-4">
-                    <span className="text-xs font-black text-white bg-blue-900/90 backdrop-blur-sm py-1.5 px-3 rounded-full uppercase tracking-widest shadow-sm">
-                      {biz.category}
-                    </span>
+                    <span className="text-xs font-black text-white bg-blue-900/90 backdrop-blur-sm py-1.5 px-3 rounded-full uppercase tracking-widest">{biz.category}</span>
                   </div>
                 </div>
-                
                 <div className="p-6 flex-grow flex flex-col justify-between">
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-500 transition-colors line-clamp-1">{biz.name}</h3>
-                    <p className="text-sm text-gray-500 mb-4 font-semibold flex items-center gap-1">📍 {biz.location}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-500 transition-colors">{biz.name}</h3>
+                    <p className="text-sm text-gray-500 mb-4 font-semibold">📍 {biz.location}</p>
                     <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{biz.description}</p>
                   </div>
-                  
-                  <Link href="/contact" className="mt-6 inline-flex items-center text-blue-800 font-bold hover:text-orange-500 transition-colors group/btn text-sm border-t border-gray-100 pt-4">
+                  <Link href="/contact" className="mt-6 inline-flex items-center text-blue-800 font-bold hover:text-orange-500 transition-colors text-sm border-t border-gray-100 pt-4 group/btn">
                     Contact Business <span className="ml-2 group-hover/btn:translate-x-2 transition-transform">&rarr;</span>
                   </Link>
                 </div>
@@ -173,37 +180,30 @@ export default function Home() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-white rounded-3xl shadow-sm border border-gray-100">
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-bold text-gray-800 mb-2">No businesses found</h3>
-            <p className="text-gray-500">Try adjusting your search or category filter to find what you need.</p>
-            <button onClick={() => {setSearchTerm(''); setActiveCategory('All');}} className="mt-6 bg-orange-500 text-white px-6 py-2 rounded-full font-bold hover:bg-orange-600 transition-colors shadow-md">
-              Clear All Filters
-            </button>
+          <div className="text-center py-20 bg-white rounded-3xl border border-gray-100">
+            <h3 className="text-2xl font-bold text-gray-800 mb-2 text-center">No businesses found</h3>
+            <button onClick={() => {setSearchTerm(''); setActiveCategory('All');}} className="mt-4 text-orange-500 font-bold underline">Clear all filters</button>
           </div>
         )}
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials */}
       <section className="bg-white py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Loved by the Community</h2>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto">Don&apos;t just take our word for it. See what locals are saying about MozBiz.</p>
           </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((review) => (
-              <div key={review.id} className="bg-gray-50 p-8 rounded-3xl border border-gray-200 hover:shadow-lg transition-shadow">
+              <div key={review.id} className="bg-gray-50 p-8 rounded-3xl border border-gray-200">
                 <div className="text-orange-400 text-2xl mb-4">★★★★★</div>
                 <p className="text-gray-700 italic mb-6 leading-relaxed">&quot;{review.text}&quot;</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-800 font-bold text-xl">
-                    {review.name.charAt(0)}
-                  </div>
+                <div className="flex items-center gap-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={review.image} alt={review.name} className="w-14 h-14 rounded-full object-cover border-2 border-orange-500 shadow-sm" />
                   <div>
                     <h4 className="font-bold text-gray-900">{review.name}</h4>
-                    <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">{review.role}</p>
+                    <p className="text-xs text-gray-500 uppercase font-semibold">{review.role}</p>
                   </div>
                 </div>
               </div>
@@ -212,27 +212,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Newsletter CTA */}
-      <section className="bg-blue-900 py-20 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Never Miss a Local Deal</h2>
-          <p className="text-blue-200 text-lg mb-10 max-w-2xl mx-auto">Subscribe to our newsletter to get updates on new businesses and exclusive local discounts delivered straight to your inbox.</p>
-          
-          <form className="flex flex-col md:flex-row gap-4 justify-center max-w-2xl mx-auto">
-            <input type="email" placeholder="Enter your email address" className="px-6 py-4 rounded-full text-gray-800 w-full md:w-2/3 focus:outline-none focus:ring-4 focus:ring-orange-500/50" />
-            <button type="button" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-colors w-full md:w-auto">
-              Subscribe Now
-            </button>
-          </form>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="bg-gray-950 text-gray-400 py-12 text-center">
+      <footer className="bg-gray-950 text-gray-400 py-12 text-center mt-auto">
         <div className="text-2xl font-black text-white tracking-tighter mb-4">Moz<span className="text-orange-500">Biz</span></div>
-        <p className="text-sm mb-2">© 2026 MozBiz Directory. All rights reserved.</p>
-        <p className="text-xs text-gray-600">Built professionally for a homework assignment.</p>
+        <p className="text-sm">© 2026 MozBiz Directory. Built professionally for a homework assignment.</p>
       </footer>
     </main>
   );
