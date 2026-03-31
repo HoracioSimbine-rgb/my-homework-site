@@ -6,11 +6,11 @@ export default function About() {
   return (
     <main className="min-h-screen bg-gray-50 text-gray-800 font-sans flex flex-col overflow-x-hidden pb-20 md:pb-0">
       
-      {/* Navigation Bar */}
+      {/* Navigation Bar (Clean Logo) */}
       <nav className="bg-white shadow-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-black text-blue-800 tracking-tighter flex items-center gap-2">
-            <span className="text-3xl drop-shadow-sm">🇲🇿</span> Moz<span className="text-orange-500">Biz</span>
+          <Link href="/" className="text-2xl font-black text-blue-800 tracking-tighter">
+            Moz<span className="text-orange-500">Biz</span>
           </Link>
           <div className="space-x-8 text-sm font-semibold hidden md:flex items-center">
             <Link href="/" className="text-gray-500 hover:text-blue-800 transition-colors">Diretório</Link>
@@ -38,7 +38,7 @@ export default function About() {
 
           <div className="md:w-1/2 p-12 lg:p-16 flex flex-col justify-center">
             
-            {/* THE FLAG YOU REQUESTED IS RIGHT HERE */}
+            {/* THE BIG FLAG IS RIGHT HERE */}
             <div className="text-6xl mb-6 drop-shadow-md">🇲🇿</div>
             
             <h1 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">A Nossa Missão</h1>
@@ -60,10 +60,10 @@ export default function About() {
         </div>
       </div>
 
-      {/* Footer */}
+      {/* Footer (Clean Logo) */}
       <footer className="bg-gray-950 text-gray-400 py-12 text-center mt-auto md:mb-0 mb-16">
-        <div className="text-2xl font-black text-white tracking-tighter mb-4 flex items-center justify-center gap-2">
-          <span className="text-3xl drop-shadow-sm">🇲🇿</span> Moz<span className="text-orange-500">Biz</span>
+        <div className="text-2xl font-black text-white tracking-tighter mb-4">
+          Moz<span className="text-orange-500">Biz</span>
         </div>
         <p className="text-sm">© 2026 MozBiz Directory. Desenvolvido para contexto moçambicano.</p>
       </footer>
