@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 export default function About() {
   return (
-    // Added overflow-x-hidden and pb-20 to accommodate the mobile bottom nav
     <main className="min-h-screen bg-gray-50 text-gray-800 font-sans flex flex-col overflow-x-hidden pb-20 md:pb-0">
       
       {/* Navigation Bar */}
@@ -13,7 +12,6 @@ export default function About() {
           <Link href="/" className="text-2xl font-black text-blue-800 tracking-tighter">
             Moz<span className="text-orange-500">Biz</span>
           </Link>
-          {/* Added 'hidden md:flex' so these links hide on mobile, letting the bottom nav take over */}
           <div className="space-x-8 text-sm font-semibold hidden md:flex items-center">
             <Link href="/" className="text-gray-500 hover:text-blue-800 transition-colors">Diretório</Link>
             <Link href="/about" className="text-blue-800 border-b-2 border-orange-500 pb-1">Sobre Nós</Link>
@@ -26,9 +24,7 @@ export default function About() {
       <div className="flex-grow max-w-6xl mx-auto px-6 py-16 w-full">
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
           
-          {/* Stunning Image Side */}
           <div className="md:w-1/2 h-80 md:h-auto relative bg-gray-200">
-            {/* LOW BANDWIDTH OPTIMIZATION: Added loading="lazy" and decoding="async" */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" 
@@ -40,9 +36,10 @@ export default function About() {
             <div className="absolute inset-0 bg-blue-900/20"></div>
           </div>
 
-          {/* Text Side (Translated) */}
           <div className="md:w-1/2 p-12 lg:p-16 flex flex-col justify-center">
-            <div className="text-5xl mb-6">🇲🇿</div>
+            {/* THE MOZAMBICAN FLAG IS BACK RIGHT HERE */}
+            <div className="text-6xl mb-6 drop-shadow-md">🇲🇿</div>
+            
             <h1 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">A Nossa Missão</h1>
             
             <p className="text-lg mb-6 text-gray-600 leading-relaxed">
@@ -68,7 +65,7 @@ export default function About() {
         <p className="text-sm">© 2026 MozBiz Directory. Desenvolvido para contexto moçambicano.</p>
       </footer>
 
-      {/* --- NATIVE APP FEATURE: Mobile Bottom Navigation Bar --- */}
+      {/* Mobile Bottom Navigation Bar */}
       <div className="md:hidden fixed bottom-0 w-full bg-white border-t border-gray-200 flex justify-around items-center pb-safe z-50 shadow-[0_-5px_15px_-5px_rgba(0,0,0,0.1)]">
         <Link href="/" className="flex flex-col items-center justify-center w-full py-3 min-h-[56px] text-gray-400 hover:text-blue-800 transition-colors">
           <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
