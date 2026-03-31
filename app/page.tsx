@@ -53,7 +53,7 @@ const businesses: Business[] = [
 const categories: string[] = ['Todos', 'Retalho', 'Serviços', 'Restauração', 'Moda', 'Tecnologia', 'Saúde'];
 
 const testimonials: Testimonial[] = [
-  { id: 1, name: "Ana Silva", role: "Cliente Local", text: "O MozBiz torna incrivelmente fácil encontrar serviços de confiança em Maputo. Uso todas as semanas!", image: "https://images.unsplash.com/photo-1531123897727-8f129e1bf98c?q=80&w=200&auto=format&fit=crop" },
+  { id: 1, name: "Ana Silva", role: "Cliente Local", text: "O MozBiz torna incrivelmente fácil encontrar serviços de confiança em Maputo. Uso todas as semanas!", image: "https://i.pinimg.com/736x/77/18/88/771888f70ec864f9fbbeb6ef5ea978ee.jpg" },
   { id: 2, name: "Carlos Tembe", role: "Proprietário de PME", text: "Desde que listei a minha loja de reparações aqui, a minha base de clientes na Matola duplicou. Plataforma fantástica.", image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?q=80&w=200&auto=format&fit=crop" },
   { id: 3, name: "Elena Rosa", role: "Turista", text: "Encontrei as melhores lojas de surf e cafés no Tofo usando este diretório. Muito bem desenhado e fácil de usar.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" }
 ];
